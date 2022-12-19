@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <script src="~/Scripts/jquery.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/popper.js/umd/popper.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <ul class="navbar-nav">
+                <li>
+                    <a class="navbar-brand" href="#">
+                        <img src="~/images/Logo.jpg" alt="" width="70" height="60"/>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="index" asp-controller="Home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="Catalog" asp-controller="Catalog" class="nav-link">Catalog</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="Login" asp-controller="Login" class="nav-link">Admin</a>
+                </li>
+                <li class="text-center">
+                    <a class="fs-1 nav-link" style="color:white">Omri`s Pet Shop</a>
+
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container text-black text-center" style="background: url('@Url.Content("~/images/petshopBackround.webp")">
+        @RenderBody()
+    </div>
+</body>
+</html>

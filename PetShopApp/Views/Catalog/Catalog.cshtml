@@ -1,0 +1,48 @@
+﻿@model IEnumerable<PetShopApp.Models.Animal>
+@{
+    ViewData["Title"] = "Catalog";
+}
+
+<h1>Catalog</h1>
+
+<script>
+    $(function () {
+        $(".cat-select").change(function () {
+            let selected = $('.cat-select').val();
+            window.location.href = "/Catalog/Catalog/" + selected
+        });
+    });
+</script>
+
+<div class="align-content-center">
+
+    <select class="cat-select">
+        <option value="">Select an type</option>
+        <option value="0">All Animals</option>
+        @foreach (var category in ViewBag.ListOfCategories)
+        {
+            <option value="@category.CategoryId">@category.CategoryName</option>
+        }
+    </select>
+</div>
+<div class="row">
+    @foreach (var animal in Model!)
+    {
+        <div class="col-4">
+
+            <div class="card m-3" style="width:12rem;">
+                <div class="card-header">
+                    <h3>@animal.Name</h3>
+                </div>
+                <img class="card-img-top" src="@animal.PictureName" asp-append-version="true" alt="card image" style="height:13rem;" />
+                <div class="card-footer text-center">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"> @Html.DisplayNameFor(Model => Model.Age) @animal.Age</li>
+                        <li class="list-group-item"> @Html.DisplayNameFor(Model => Model.Category!.CategoryName) @animal.Category!.CategoryName</li>
+                    </ul>
+                    <a asp-controller="Animal" asp-action="ShowDetails" asp-route-id="@animal.AnimalId" class="btn btn-primary">More Details</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

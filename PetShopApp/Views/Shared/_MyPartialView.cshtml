@@ -1,0 +1,41 @@
+﻿@model PetShopApp.Models.Animal
+<form method="post">
+    <div class="row g-3">
+        <div class="col-md-6">
+            <label asp-for="Name">Name</label>
+            <input asp-for="Name" class="form-control" placeholder="Name" required>
+            <span asp-validation-for="Name"></span>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="Age">Age</label>
+            <input asp-for="Age" class="form-control" placeholder="Age">
+            <span asp-validation-for="Age"></span>
+        </div>
+        <div class="col-12">
+            <label asp-for="Description">Description</label>
+            <input asp-for="Description" class="form-control form-control-lg" placeholder="Description">
+            <span asp-validation-for="Description"></span>
+        </div>
+        
+        <div class="col-md-6">
+            <label asp-for="PictureName"></label>
+            <input asp-for="PictureName" type="file" class="form-control" accept="image/*" id="imageFile" />
+            <span asp-validation-for="PictureName" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="CategoryId"></label>
+            <select asp-for="CategoryId" class="form-select">
+                <option value="">Select a type</option>
+                @foreach (var category in ViewBag.ListOfCategories)
+                {
+                    <option value="@category.CategoryId" name="CategoryId">@category.CategoryName</option>
+                }
+            </select>
+            <span asp-validation-for="CategoryId"></span>
+        </div>
+    </div>
+    <div class="row col-md-6 offset-md-3 mt-2 justify-content-center">
+        <button type="submit" class="btn btn-primary btn-sm"style="width:120px">Submit</button>
+    </div>
+    @*<div asp-validation-summary="All"></div>*@
+</form>

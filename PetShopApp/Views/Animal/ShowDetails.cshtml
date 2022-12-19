@@ -1,0 +1,45 @@
+﻿@model PetShopApp.Models.Animal
+@{
+    ViewData["Title"] = "ShowDetails";
+}
+<div class="row justify-content-md-center">
+<h1 class="container" style="color:aquamarine">Animal Details</h1>
+
+    <div class="col-4">
+
+        <div class="card m-3" style="width:12rem;">
+            <div class="card-header">
+                <h3>@Model.Name</h3>
+            </div>
+            <img class="card-img-top" src="@Model.PictureName" asp-append-version="true" alt="card image" style="height:13rem;" />
+            <div class="card-footer text-center">
+                <ol class="list-group list-group-flush">
+                    <li class="list-group-item"> @Html.DisplayNameFor(Model => Model.Age) @Model.Age</li>
+                    <li class="list-group-item"> @Html.DisplayNameFor(Model => Model.Comments) @Model.Comments!.Count()</li>
+                    <li class="list-group-item"> @Html.DisplayNameFor(Model => Model.Category!.CategoryName) @Model.Category!.CategoryName</li>
+                    <li class="list-group-item" style="font-size:10px"> @Html.DisplayNameFor(Model => Model.Description) @Model.Description</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <h3>Comments:</h3>
+        <ul>
+            @foreach (var comment in @Model.Comments!)
+            {
+                <li>
+                    @comment.comment <br />
+                </li>
+            }
+        </ul>
+        <div class="input-group mb-3">
+            <form method="post" asp-route-id="@Model.AnimalId">
+                <input name="commen" type="text" class="form-control" placeholder="Add a comment" aria-label="Add a comment" aria-describedby="basic-addon2">
+                @*<span asp-validation-for=""></span>*@
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" style="color:darkblue" type="submit" value="submit">Add comment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

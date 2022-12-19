@@ -1,0 +1,49 @@
+﻿@model IEnumerable<PetShopApp.Models.Animal>
+@{
+    ViewData["Title"] = "SelectAnimal";
+}
+<script>
+    $(function () {
+        $(".for-select").change(function () {
+            let selected = $('.for-select').val();
+            window.location.href = "/Admin/SelectAnimal/" + selected
+        });
+    });
+</script>
+<h1 style="color:darkblue">Adminstrator</h1>
+<div class="align-content-center">
+
+    <select class="for-select">
+        <option value="">Select an Animal</option>
+        <option value="0">All Animals</option>
+        @foreach (var category in ViewBag.ListOfCategories)
+        {
+            <option value="@category.CategoryId">@category.CategoryName</option>
+        }
+    </select>
+    <a asp-controller="Admin" asp-action="CreateAnimal" class="btn btn-secondary">Add new</a>
+</div>
+<div class="row">
+    @foreach (var animal in Model!)
+    {
+        <div class="col-4">
+            <div class="card m-3" style="width:12rem;">
+                <div class="card-header">
+                    <h3>@animal.Name</h3>
+                </div>
+                <img class="card-img-top" src="@animal.PictureName" asp-append-version="true" alt="card image" style="height:13rem;" />
+                <div class="card-footer text-center">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"> @Html.DisplayNameFor(Model => Model.Age) @animal.Age</li>
+                        <li class="list-group-item"> @Html.DisplayNameFor(Model => Model.Category!.CategoryName) @animal.Category!.CategoryName</li>
+                        <li class="list-group-item" style="font-size:10px"> @Html.DisplayNameFor(Model => Model.Description) @animal.Description</li>
+                    </ul>
+                    <a asp-controller="Admin" asp-action="EditAnimal" asp-route-id="@animal.AnimalId" class="btn btn-primary">Edit</a>
+                    <a asp-controller="Admin" asp-action="DeleteAnimal" asp-route-id="@animal.AnimalId" class="btn btn-primary">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
