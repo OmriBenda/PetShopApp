@@ -38,7 +38,7 @@ namespace PetShopApp.Repository
 
         public void DeleteAnimal(int id)
         {
-            var Animal = _Context.Animals.Single(a => a.AnimalId == id);
+            var Animal = _Context.Animals.FirstOrDefault(a => a.AnimalId == id);
             _Context.Animals.Remove(Animal);
             _Context.SaveChanges();
         }

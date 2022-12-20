@@ -11,5 +11,6 @@ namespace PetShopApp.Models
         [Display(Name = "Password: ")]
         [Required(ErrorMessage = "Please Enter a valid password")]
         public string? Password { get; set; }
+        public bool KeepLoggedIn { get; internal set; }
     }
 }

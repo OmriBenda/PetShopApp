@@ -1,9 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PetShopApp.Models;
 using PetShopApp.Repository;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PetShopApp.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private IRepository<Animal>? _repository;
